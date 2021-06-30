@@ -27,6 +27,13 @@ function App() {
     reminder: false
   }
   ]
+  //add task
+  const addTask=(task)=>{
+    const id=Math.floor(Math.random()*10000)+1
+    const newTask={id,...task};
+    setTasks([...stateTasks,newTask])
+
+  }
   const [stateTasks,setTasks ] = useState(tasks);
   //delete task
   const deleteTask=(id)=>{
@@ -39,7 +46,7 @@ function App() {
   return (
     <div className="container">
      <Header />
-     <AddTask/>
+     <AddTask onAdd={addTask}/>
      {stateTasks.length > 0 ? <Tasks 
      tasks={stateTasks} 
      onDelete={deleteTask}
